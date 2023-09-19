@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title', 100)->unique();
             $table->string('author', 100);
             $table->smallInteger('pages');
+            $table->string('description', 400)->nullable();
             $table->timestamps();
         });
     }
