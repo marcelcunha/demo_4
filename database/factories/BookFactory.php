@@ -20,6 +20,7 @@ class BookFactory extends Factory
             'title' => $this->faker->unique()->sentence(3),
             'author' => $this->faker->name(),
             'pages' => $this->faker->numberBetween(100, 1000),
+            'description' => $this->faker->optional(.3)->text(400),
         ];
     }
 }
