@@ -1,4 +1,4 @@
-<div>
+<div {{$attributes->merge(['class' => $rootClass])}}>
     <label for="{{ $id }}" class="block text-sm font-medium leading-6 text-gray-900">{{ $label }}</label>
 
     <div class="relative mt-2 rounded-md shadow-sm">

@@ -11,13 +11,12 @@ class TextArea extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $name, public string $label, public ?string $id = null)
+    public function __construct(public string $name, public string $label, public ?string $id = null, public ?string $rootClass = null)
     {
         if (is_null($id)) {
             $this->id = $name;
         }
     }
-    
 
     /**
      * Get the view / contents that represent the component.
