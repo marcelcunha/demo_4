@@ -126,32 +126,8 @@
                 }
             }))
         });
-        const main = () => {
-            return {
-                // coordinates: null,
-                // getCoordinates() {
-                //     this.coordinates = JSON.stringify(sessionStorage.getItem('coordinates'));
-                //     console.log(this.coordinates)
-                //     if (this.coordinates == null || this.coordinates == undefined || this.coordinates == '{}') {
-                //         return thi|s.getLocation();
-                //     }
-                // },
-                getLocation() {
-                    // if (navigator.geolocation) {
-                    //     navigator.geolocation.getCurrentPosition(function(position) {
-                    //         console.log(position.coords, JSON.stringify(position.coords));
 
-                    //         sessionStorage.setItem('coordinates', JSON.stringify(position.coords));
-                    //         console.log(sessionStorage.getItem('coordinates'));
-                    //         console.log(JSON.parse(sessionStorage.getItem('coordinates')));
-                    //         return position.coords;
-                    //     });
-                    // }
-
-                    return null;
-                },
-            }
-        }
+        
     </script>
     @yield('js')
 </body>
