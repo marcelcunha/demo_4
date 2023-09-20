@@ -1,66 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Aplicação de Demonstração
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Sobre
 
-## About Laravel
+Esse projeto foi criado usando TALL Stack (Tailwind, Alpine, Laravel e Livewire), PHP 8.2 e MySql 8 em containeres Docker. A interface é baseada nos componentes da TailwindUi, porém as telas que lidam com autenticação tem o design do Laravel Breeze. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Para tradução de termos em português foi usado o pacote laravel-pt-BR-localization. Laravel Pint (PHP CsFixer) para padronizar o código PHP(já vem instalado por padrão no framework). Larastan (PHPStan) para análise estática do código (evita errors, principalmente inconsistência de tipos). PestPHP para testes de funcionalidades. Como citado anteriormente Laravel Breeze para gearar o código e telas de autenticação.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instalação
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+É recomendado que se use Docker para rodar o projeto, porém é possível executá-lo sem o uso de containeres. Para isso é necessário ter instalado o PHP 8.2, MySql 8.0, Composer e NodeJs e algum servidor Http  compatível (Apache ou Nginx).
 
-## Learning Laravel
+### Passos com Docker
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+  1. Baixe esse projeto em sua máquina.
+  2. Abra um terminal na pasta do projeto e execute o comando:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Isso irá instalar as dependências do `composer.json` e junto com elas um script (`sail`) para facilitar o uso com Docker.
+Voce pode ignorar os comandos com o script e usar o Docker diretamente, porém o script facilita o uso então os passos usarão esses comandos.
 
-## Laravel Sponsors
+3. Copie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente de como necessitar.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+É importante que especifique os valores para `APP_PORT`, `FORWARD_DB_PORT` e `VITE_PORT` para portas que não estão sendo usadas em sua máquina.
+Caso queira que a previsão do tempo seja exibida com precisão, é necessário que especifique a variável `WEATHER_API_KEY` com uma chave válida da API da [HgBrasil](https://hgbrasil.com/status/weather), no link há os passos para conseguir uma chave.
 
-### Premium Partners
+4. Execute o comando `./vendor/bin/sail up -d` para subir os containeres.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+5. Execute o comando `./vendor/bin/sail artisan migrate --seed` para criar as tabelas no banco de dados e populá-las.
 
-## Contributing
+6. Execute o comando `./vendor/bin/sail npm install` para instalar as dependências do NodeJs.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+7. Execute o comando `./vendor/bin/sail npm run dev` para compilar os assets e manter em hot reload ou simplesmente execute `./vendor/bin/sail npm run build` e não precisará se preocupar enquanto não fizer alterações no código.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+8. Acesse o endereço `http://localhost:APP_PORT` (onde `APP_PORT` é valor especificado no`.env`) no navegador e poderá ver a aplicação rodando.
