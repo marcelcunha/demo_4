@@ -2,7 +2,7 @@
 
 ## Sobre
 
-Esse projeto foi criado usando TALL Stack (Tailwind, Alpine, Laravel e Livewire), PHP 8.2 e MySql 8 em containeres Docker. A interface é baseada nos componentes da TailwindUi, porém as telas que lidam com autenticação tem o design do Laravel Breeze. 
+Esse projeto foi criado usando TALL Stack (Tailwind, Alpine, Laravel e Livewire), PHP 8.2 e MySql 8 em containeres Docker. A interface é baseada nos componentes da TailwindUi, porém as telas que lidam com autenticação tem o design do Laravel Breeze. Os ícones são do HeroIcons para manter o ecossistema da Tailwind.
 
 Para tradução de termos em português foi usado o pacote laravel-pt-BR-localization. Laravel Pint (PHP CsFixer) para padronizar o código PHP(já vem instalado por padrão no framework). Larastan (PHPStan) para análise estática do código (evita errors, principalmente inconsistência de tipos). PestPHP para testes de funcionalidades. Como citado anteriormente Laravel Breeze para gearar o código e telas de autenticação.
 
@@ -40,4 +40,6 @@ Caso queira que a previsão do tempo seja exibida com precisão, é necessário 
 
 7. Execute o comando `./vendor/bin/sail npm run dev` para compilar os assets e manter em hot reload ou simplesmente execute `./vendor/bin/sail npm run build` e não precisará se preocupar enquanto não fizer alterações no código.
 
-8. Acesse o endereço `http://localhost:APP_PORT` (onde `APP_PORT` é valor especificado no`.env`) no navegador e poderá ver a aplicação rodando.
+8. Execute o comando `./vendor/bin/sail artisan key:generate` para gerar uma chave para a aplicação.
+
+9. Acesse o endereço `http://localhost:APP_PORT` (onde `APP_PORT` é valor especificado no`.env`) no navegador e poderá ver a aplicação rodando.
