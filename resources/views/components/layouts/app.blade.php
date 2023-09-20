@@ -12,11 +12,16 @@
 
 <body class="h-full">
 
-    {{-- @if (session()->has('success'))
-        <div x-init='openToast'>
-            <x-toast type="success" message="{{ session('success') }}" />
+    @if (session()->has('success'))
+        <div x-init="$store.toasts.createToast('{{session('success')}}', 'success')">
         </div>
-    @endif --}}
+    @endif
+    @if (session()->has('error'))
+        <div x-init="$store.toasts.createToast('{{session('error')}}', 'error')">
+        </div>
+    @endif
+
+    @include('components.toast')
 
     <div x-data='reverseDropdown'>
         @include('components.layouts.sidebar')
@@ -49,16 +54,17 @@
                             <button type="button" class="-m-1.5 flex items-center p-1.5" id="user-menu-button"
                                 @click="toggle" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <div class="h-8 w-8 rounded-full bg-gray-50"
-                                    >
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                                      </svg>
+                                <div class="h-8 w-8 rounded-full bg-gray-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="h-8 w-8">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
 
                                 </div>
                                 <span class="hidden lg:flex lg:items-center">
                                     <span class="ml-4 text-sm font-semibold leading-6 text-gray-900"
-                                        aria-hidden="true">{{auth()->user()->name}}</span>
+                                        aria-hidden="true">{{ auth()->user()->name }}</span>
                                     <svg class="ml-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
                                         aria-hidden="true">
                                         <path fill-rule="evenodd"
@@ -78,13 +84,14 @@
                                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                 tabindex="-1">
                                 <!-- Active: "bg-gray-50", Not Active: "" -->
-                                <a href="{{route('profile.edit')}}" class="block px-3 py-1 text-sm leading-6 text-gray-900"
-                                    role="menuitem" tabindex="-1" id="user-menu-item-0">Perfil</a>
-                                    <form action="{{route('logout')}}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="block px-3 py-1 text-sm leading-6 text-gray-900"
-                                            role="menuitem" tabindex="-1" id="user-menu-item-1">Sign out</button>
-                                    </form>
+                                <a href="{{ route('profile.edit') }}"
+                                    class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-0">Perfil</a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block px-3 py-1 text-sm leading-6 text-gray-900"
+                                        role="menuitem" tabindex="-1" id="user-menu-item-1">Sign out</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -92,7 +99,7 @@
             </div>
 
             <main class="py-10">
-                <div class="px-4 sm:px-6 lg:px-8 container">
+                <div class="container px-4 sm:px-6 lg:px-8">
                     <!-- Your content -->
                     {{ $slot }}
 
@@ -143,21 +150,6 @@
 
                     return null;
                 },
-            }
-        }
-
-        function toastNotification() {
-            return {
-                open: false,
-                title: "Toast Title",
-                message: "Toast message",
-                success: false,
-                openToast() {
-                    this.open = true
-                    setTimeout(() => {
-                        this.open = false
-                    }, 5000)
-                }
             }
         }
     </script>
