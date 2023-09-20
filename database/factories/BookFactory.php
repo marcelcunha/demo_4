@@ -21,6 +21,7 @@ class BookFactory extends Factory
             'author' => $this->faker->name(),
             'pages' => $this->faker->numberBetween(100, 1000),
             'description' => $this->faker->optional(.3)->text(400),
+            'created_at' => $this->faker->dateTimeBetween('-5 year'),
         ];
     }
 }
