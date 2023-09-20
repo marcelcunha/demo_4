@@ -5,6 +5,7 @@ use App\Livewire\Book\Creation as BookCreation;
 use App\Livewire\Book\Edition as BookEdition;
 use App\Livewire\Book\Index as BookIndex;
 use App\Livewire\Book\Show as BookShow;
+use App\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +27,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{book}/editar', BookEdition::class)->name('books.edit');
     });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/', Dashboard::class)->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
