@@ -43,3 +43,8 @@ Caso queira que a previsão do tempo seja exibida com precisão, é necessário 
 8. Execute o comando `./vendor/bin/sail artisan key:generate` para gerar uma chave para a aplicação.
 
 9. Acesse o endereço `http://localhost:APP_PORT` (onde `APP_PORT` é valor especificado no`.env`) no navegador e poderá ver a aplicação rodando.
+
+    
+    >Há um usuário padrão cadastrado previamente. 
+    Email: `test@example.com`
+    Senha: `password`
