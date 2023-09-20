@@ -2,7 +2,7 @@
     <x-card title='Listagem de Livros'>
         <x-slot name='cardHeader'>
             <div class="flex gap-2">
-                <x-form.button label='Novo Livro' category='primary' link='{{ true }}'
+                <x-form.button label='Novo Livro' category='primary' link='{{ true }}' wire.navigate.hover
                     href="{{ route('books.create') }}" />
             </div>
         </x-slot>
