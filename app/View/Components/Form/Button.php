@@ -11,7 +11,7 @@ class Button extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $title, public string $category, public bool $link = false)
+    public function __construct(public string $category, public ?string $label = null, public bool $link = false)
     {
         //
     }
