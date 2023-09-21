@@ -2,7 +2,7 @@
 
 ## Sobre
 
-Esse projeto foi criado usando TALL Stack (Tailwind, Alpine, Laravel e Livewire), PHP 8.2 e MySql 8 em containeres Docker. A interface é baseada nos componentes da TailwindUi, porém as telas que lidam com autenticação tem o design do Laravel Breeze. Os ícones são do HeroIcons para manter o ecossistema da Tailwind.
+Esse projeto foi criado usando TALL Stack ([Tailwind](https://tailwindcss.com/docs/installation), [Alpine](https://alpinejs.dev/), [Laravel](https://laravel.com/docs/10.x/) e [Livewire](https://livewire.laravel.com/)), PHP 8.2 e MySql 8.0 em containeres Docker. A interface é baseada nos componentes da TailwindUi, porém as telas que lidam com autenticação tem o design do Laravel Breeze. Os ícones são do HeroIcons para manter o ecossistema da Tailwind.
 
 Para tradução de termos em português foi usado o pacote laravel-pt-BR-localization. Laravel Pint (PHP CsFixer) para padronizar o código PHP(já vem instalado por padrão no framework). Larastan (PHPStan) para análise estática do código (evita errors, principalmente inconsistência de tipos). PestPHP para testes de funcionalidades. Como citado anteriormente Laravel Breeze para gearar o código e telas de autenticação.
 
@@ -27,7 +27,7 @@ docker run --rm \
 Isso irá instalar as dependências do `composer.json` e junto com elas um script (`sail`) para facilitar o uso com Docker.
 Voce pode ignorar os comandos com o script e usar o Docker diretamente, porém o script facilita o uso então os passos usarão esses comandos.
 
-3. Copie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente de como necessitar.
+3. Copie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente como necessitar.
 
 É importante que especifique os valores para `APP_PORT`, `FORWARD_DB_PORT` e `VITE_PORT` para portas que não estão sendo usadas em sua máquina.
 Caso queira que a previsão do tempo seja exibida com precisão, é necessário que especifique a variável `WEATHER_API_KEY` com uma chave válida da API da [HgBrasil](https://hgbrasil.com/status/weather), no link há os passos para conseguir uma chave.
@@ -35,6 +35,9 @@ Caso queira que a previsão do tempo seja exibida com precisão, é necessário 
 4. Execute o comando `./vendor/bin/sail up -d` para subir os containeres.
 
 5. Execute o comando `./vendor/bin/sail artisan migrate --seed` para criar as tabelas no banco de dados e populá-las.
+
+Caso tenha algum problema, confira se os containers estão funcionais. Execute o comando `./vendor/bin/sail ps` para ver o status dos containeres.
+Execute o comando `./vendor/bin/sail up -d --force-recreate` para recriá-los, rode o comando do passo 5 novamente.
 
 6. Execute o comando `./vendor/bin/sail npm install` para instalar as dependências do NodeJs.
 
