@@ -84,9 +84,9 @@
                                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                 tabindex="-1">
                                 <!-- Active: "bg-gray-50", Not Active: "" -->
-                                <a href="{{ route('profile.edit') }}"
+                                {{-- <a href="{{ route('profile.edit') }}"
                                     class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem"
-                                    tabindex="-1" id="user-menu-item-0">Perfil</a>
+                                    tabindex="-1" id="user-menu-item-0">Perfil</a> --}}
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="block px-3 py-1 text-sm leading-6 text-gray-900"
@@ -127,7 +127,7 @@
             }))
         });
 
-        
+
     </script>
     @yield('js')
 </body>
