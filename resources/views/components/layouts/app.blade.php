@@ -52,7 +52,7 @@
                         <!-- Profile dropdown -->
                         <div class="relative" x-data='dropdown'>
                             <button type="button" class="-m-1.5 flex items-center p-1.5" id="user-menu-button"
-                                @click="toggle" aria-expanded="false" aria-haspopup="true">
+                                @click="toggle"  @click.outside="open = false" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
                                 <div class="h-8 w-8 rounded-full bg-gray-50">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
