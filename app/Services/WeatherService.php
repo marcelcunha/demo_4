@@ -39,14 +39,20 @@ class WeatherService
 
     private function callAPI(): array
     {
-        return Http::acceptJson()
-            ->get($this->apiUrl, [
-                'key' => $this->apiKey,
-                'user_ip' => 'remote',
-            ])->throw(function ($response) {
-                return [];
-            })
-            ->json();
+        try{
+            return Http::acceptJson()
+                ->get($this->apiUrl, [
+                    'key' => $this->apiKey,
+                    'user_ip' => 'remote',
+                ])->throw(function ($response) {
+                    return [];
+                })
+                ->json();
+        }catch (\Exception $e){
+            report($e);
+            
+            return [];
+        }
     }
 
     private function getCachedResponse(): array
